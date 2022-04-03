@@ -1,50 +1,19 @@
 import React from "react";
-import logo from "./logo.svg";
+import logo from "./duff.png";
 import { Counter } from "./../../components/counter/Counter";
+import List from "../../components/list/List";
+import Information from "../../components/information/Information";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div>
       <header>
-        <img src={logo} alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
+        <img src={logo} alt="logo" width={100} />
+        <Routes>
+          <Route path="/" element={<List />} />
+          <Route path="/beer/:beer" element={<Information />} />
+        </Routes>
       </header>
     </div>
   );
