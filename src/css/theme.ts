@@ -5,7 +5,7 @@ export const defaultTheme: DefaultTheme = {
     white: "#FFFFFF",
     black: "#00120B",
     yellow: "#FAAB1B",
-    ivory: "#F6F7EB",
+    ivory: "#F3F3F3",
     grey: "#8B8B8F",
   },
   families: {
