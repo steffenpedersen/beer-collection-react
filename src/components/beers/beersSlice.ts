@@ -24,6 +24,11 @@ export const beersSlice = createSlice({
         setBeers: (state, action: PayloadAction<{}>) => {
             state.beers = action.payload;
         }
+    },
+    extraReducers: {
+        [getBeersAsync.fulfilled.type]: (state, action) => {
+            state.beers = action.payload;
+        }
     }
 });
 

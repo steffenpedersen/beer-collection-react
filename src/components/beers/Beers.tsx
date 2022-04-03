@@ -7,8 +7,8 @@ function Beers() {
   const beers = useSelector(selectBeers);
 
   useEffect(() => {
-    // Set the state
-  });
+    dispatch(getBeersAsync());
+  }, []);
 
   return <h1>Beers</h1>;
 }
