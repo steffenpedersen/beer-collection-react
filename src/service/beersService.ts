@@ -2,8 +2,14 @@ import { Beer } from "../models/beerModel";
 
 export const beersService = {
     // Get beers and return them as an array of Beer objects with filtered data
-    getBeers: async (): Promise<Beer[]> => {
-        const response = await fetch(`https://api.punkapi.com/v2/beers`);
+    getBeers: async (name: string): Promise<Beer[]> => {
+        let url = "https://api.punkapi.com/v2/beers";
+
+        if (name) {
+            url += `?beer_name=${name}`;
+        }
+
+        const response = await fetch(url);
         const beers = await response.json();
 
         return beers.map((beer: Beer) => ({

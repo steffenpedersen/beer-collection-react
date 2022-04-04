@@ -13,8 +13,8 @@ const initialState: BeersState = {
 
 export const getBeersAsync = createAsyncThunk(
     "beers/getBeers",
-    async () => {
-        const response = await beersService.getBeers();
+    async (name: string = "") => {
+        const response = await beersService.getBeers(name);
         return response;
     }
 );
