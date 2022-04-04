@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectBeer, getBeerAsync } from "../beers/beersSlice";
+import { getBeerAsync, selectBeer } from "../../components/beers/beersSlice";
 
-function BeerDetail() {
+function BeerDetailPage() {
   const dispatch = useDispatch();
   const beer = useSelector(selectBeer);
   const { id } = useParams();
@@ -13,11 +13,11 @@ function BeerDetail() {
   }, [dispatch, id]);
 
   return (
-    <section>
+    <div>
       <h1>{beer.name}</h1>
       <img src={beer.image_url} width={200} alt="" />
-    </section>
+    </div>
   );
 }
 
-export default BeerDetail;
+export default BeerDetailPage;

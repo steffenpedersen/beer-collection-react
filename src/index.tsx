@@ -1,13 +1,13 @@
+import "normalize.css";
 import React from "react";
 import ReactDOM from "react-dom";
-import "normalize.css";
-import App from "./pages/home/App";
-import { store } from "./redux/store";
 import { Provider } from "react-redux";
-import { ThemeProvider } from "styled-components";
-import { defaultTheme } from "./css/theme";
-import { GlobalStyle } from "./css/global";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import App from "./App";
+import { GlobalStyle } from "./css/global";
+import { defaultTheme } from "./css/theme";
+import { store } from "./redux/store";
 
 ReactDOM.render(
   <React.StrictMode>

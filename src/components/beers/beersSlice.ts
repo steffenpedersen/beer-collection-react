@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Beer } from "../../models/beerModel";
 import { RootState } from "../../redux/store";
 import { beersService } from "../../service/beersService";

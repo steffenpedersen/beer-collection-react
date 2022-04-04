@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import styled, { css } from "styled-components";
 
 export const MaxWidth = css`
   max-width: 1080px;
@@ -14,3 +14,9 @@ export const MaxWidth = css`
     padding-right: 50px;
   }
 `
+export const Wrapper = styled.section`
+  padding-top: 50px;
+  padding-bottom: 50px;
+  
+  ${MaxWidth}
+`;
