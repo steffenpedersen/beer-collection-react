@@ -1,17 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Beer } from "../../models/beerModel";
+import { RootState } from "../../redux/store";
 import { beersService } from "../../service/beersService";
 
 export interface BeersState {
-    beers: {
-        beers: Beer[]
-    }
+    beers: Beer[]
 }
 
-const initialState: BeersState =  {
-    beers: {
-        beers: []
-    }
+const initialState: BeersState = {
+    beers: []
 };
 
 export const getBeersAsync = createAsyncThunk(
@@ -26,19 +23,22 @@ export const beersSlice = createSlice({
     name: 'beers',
     initialState,
     reducers: {
-        setBeers: (state, action: PayloadAction<{}>) => {
-            // state.beers = action.payload;
+        setBeers: (state, { payload }) => {
+            state.beers = [...state.beers, ...payload];
         }
     },
     extraReducers: {
         [getBeersAsync.fulfilled.type]: (state, action) => {
             state.beers = action.payload;
+        },
+        [getBeersAsync.rejected.type]: (state, action) => {
+            console.error(action.error);
         }
     }
 });
 
 export const { setBeers } = beersSlice.actions;
 
-export const selectBeers = (state: BeersState) => state.beers.beers;
+export const selectBeers = (state: RootState) => state.beers.beers;
 
 export default beersSlice.reducer;

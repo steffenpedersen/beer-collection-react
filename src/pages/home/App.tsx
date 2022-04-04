@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "./duff.png";
 import { Counter } from "./../../components/counter/Counter";
 import Beers from "../../components/beers/Beers";

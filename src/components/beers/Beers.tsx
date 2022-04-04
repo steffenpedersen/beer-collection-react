@@ -9,7 +9,7 @@ function Beers() {
 
   useEffect(() => {
     dispatch(getBeersAsync());
-  }, []);
+  }, [dispatch]);
 
   return (
     <section>
@@ -19,6 +19,23 @@ function Beers() {
           <li key={beer.id}>{beer.name}</li>
         ))}
       </ul>
+      <button
+        onClick={() =>
+          dispatch(
+            setBeers([
+              {
+                id: 1,
+                name: "Beer 1",
+                tagline: "Tagline 1",
+                description: "Description 1",
+                image_url: "https://via.placeholder.com/150",
+              },
+            ])
+          )
+        }
+      >
+        Add
+      </button>
     </section>
   );
 }
