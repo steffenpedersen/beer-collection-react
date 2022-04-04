@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Beer } from "../../models/beerModel";
 import AddBeer from "../addBeer/AddBeer";
 import Search from "../search/Search";
@@ -22,8 +23,10 @@ function Beers() {
       <ul>
         {beers.map((beer: Beer) => (
           <li key={beer.id}>
-            {beer.name}
-            <img src={beer.image_url} width={25} alt="" />
+            <Link to={`/beer/${beer.id}`}>
+              {beer.name}
+              <img src={beer.image_url} width={25} alt="" />
+            </Link>
           </li>
         ))}
       </ul>

@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import logo from "./duff.png";
 import { Counter } from "./../../components/counter/Counter";
 import Beers from "../../components/beers/Beers";
-import Information from "../../components/information/Information";
 import { Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import { MaxWidth } from "../../css/helpers";
+import BeerDetail from "../../components/beerDetail/BeerDetail";
 
 const Header = styled.header`
   ${MaxWidth}
@@ -19,7 +19,7 @@ function App() {
       </Header>
       <Routes>
         <Route path="/" element={<Beers />} />
-        <Route path="/beer/:beer" element={<Information />} />
+        <Route path="/beer/:id" element={<BeerDetail />} />
       </Routes>
     </div>
   );
