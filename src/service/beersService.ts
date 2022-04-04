@@ -1,9 +1,18 @@
+import { Beer } from "../models/beerModel";
 
 export const beersService = {
-    // TODO: Add types
-    getBeers: () => {
-        return fetch("https://api.punkapi.com/v2/beers")
-            .then(response => response.json())
-            .then(data => data);
+    // Get beers and return them as an array of Beer objects with filtered data
+    getBeers: async (): Promise<Beer[]> => {
+        const response = await fetch(`https://api.punkapi.com/v2/beers`);
+        const beers = await response.json();
+
+        return beers.map((beer: Beer) => ({
+            id: beer.id,
+            name: beer.name,
+            tagline: beer.tagline,
+            first_brewed: beer.first_brewed,
+            description: beer.description,
+            image_url: beer.image_url,
+        }));
     }
 };

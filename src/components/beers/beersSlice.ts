@@ -1,12 +1,17 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Beer } from "../../models/beerModel";
 import { beersService } from "../../service/beersService";
 
 export interface BeersState {
-    beers: {}
+    beers: {
+        beers: Beer[]
+    }
 }
 
-const initialState: BeersState = {
-    beers: {}
+const initialState: BeersState =  {
+    beers: {
+        beers: []
+    }
 };
 
 export const getBeersAsync = createAsyncThunk(
@@ -22,7 +27,7 @@ export const beersSlice = createSlice({
     initialState,
     reducers: {
         setBeers: (state, action: PayloadAction<{}>) => {
-            state.beers = action.payload;
+            // state.beers = action.payload;
         }
     },
     extraReducers: {
@@ -34,6 +39,6 @@ export const beersSlice = createSlice({
 
 export const { setBeers } = beersSlice.actions;
 
-export const selectBeers = (state: BeersState) => state.beers;
+export const selectBeers = (state: BeersState) => state.beers.beers;
 
 export default beersSlice.reducer;
