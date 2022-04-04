@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Beer } from "../../models/beerModel";
+import AddBeer from "../addBeer/AddBeer";
 import Search from "../search/Search";
 import { setBeers, getBeersAsync, selectBeers } from "./beersSlice";
 
@@ -20,26 +21,14 @@ function Beers() {
 
       <ul>
         {beers.map((beer: Beer) => (
-          <li key={beer.id}>{beer.name}</li>
+          <li key={beer.id}>
+            {beer.name}
+            <img src={beer.image_url} width={25} alt="" />
+          </li>
         ))}
       </ul>
-      <button
-        onClick={() =>
-          dispatch(
-            setBeers([
-              {
-                id: 1,
-                name: "Beer 1",
-                tagline: "Tagline 1",
-                description: "Description 1",
-                image_url: "https://via.placeholder.com/150",
-              },
-            ])
-          )
-        }
-      >
-        Add
-      </button>
+
+      <AddBeer />
     </section>
   );
 }
