@@ -7,12 +7,7 @@ import Search from "../search/Search";
 import { setBeers, getBeersAsync, selectBeers } from "./beersSlice";
 
 function Beers() {
-  const dispatch = useDispatch();
   const beers = useSelector(selectBeers);
-
-  useEffect(() => {
-    dispatch(getBeersAsync());
-  }, [dispatch]);
 
   return (
     <section>
@@ -30,8 +25,6 @@ function Beers() {
           </li>
         ))}
       </ul>
-
-      <AddBeer />
     </section>
   );
 }
