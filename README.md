@@ -1,4 +1,19 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Beer Collection 🍻
+
+- [Beer Collection 🍻](#beer-collection-)
+  - [Available Scripts](#available-scripts)
+    - [`npm start`](#npm-start)
+  - [Folder Structure](#folder-structure)
+  - [Redux](#redux)
+    - [How It Works](#how-it-works)
+  - [Further Development](#further-development)
+    - [Error Handling](#error-handling)
+    - [Pagination](#pagination)
+    - [Loading Animation](#loading-animation)
+    - [The Detailed Page](#the-detailed-page)
+    - [Tests](#tests)
+
+This project was built with [Create React App](https://github.com/facebook/create-react-app), using the Redux and Redux Toolkit. I have also added React Router, React Spring and Styled Components. The project is using client side rendering, which theoretically might not be the best idea, because it will give the client more JavaScript to handle. Because it is such a small app, I think it is completely alright. I wrote a short post about this [https://www.steffenp.dk/posts/12fd4760-89d2-4a9a-9f6b-547d0dbed1ba](https://www.steffenp.dk/posts/12fd4760-89d2-4a9a-9f6b-547d0dbed1ba).
 
 ## Available Scripts
 
@@ -7,38 +22,57 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.<br />
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Folder Structure
 
-### `npm test`
+Here is a list with a description of the content of the folders. I have modified the structure from Create React App to enhance separation of concerns.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **public**: static content
+- **src**: main content
+  - **components**: components with `.tsx`, `test.tsx` and `Slice.ts`
+  - **css**: theme, global css and helpers
+  - **hooks**: custom hooks
+  - **models**: global interfaces
+  - **pages**: the main pages
+  - **redux**: initialization of the state
+  - **service**: fetch the data
 
-### `npm run build`
+## Redux
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I chose to use the state management and pattern library Redux Toolkit for a centralized store for all components. This project is not that big - but it's nice with a single source of truth for data/state.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### How It Works
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![https://miro.medium.com/max/919/1*EdiFUfbTNmk_IxFDNqokqg.png](https://miro.medium.com/max/919/1*EdiFUfbTNmk_IxFDNqokqg.png)
 
-### `npm run eject`
+If we use an example of the list of beers in the `beersSlice` 🍕, then we have the view `App.tsx`, where we `dispatch` the `getBeersAsync`, which use an `createAsyncThunk` to fetch the data with the service `beersService.getBeers`, where it is being listened with the `extraReducers` that automatically generates `actions`, that will update the `state` with `beers`. We are then in `BeersList.tsx` using `selectBeers` to select the beers and `map` over the array to make the list.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+In the `AddBeer.tsx` I `dispatch` the reducer `setBeers` with an object, which then updates the `state`.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In the `Search.tsx` I `dispatch` the `getBeersAsync` with an argument.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Further Development
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+I have written down a few thoughts on possible further development.
 
-## Learn More
+### Error Handling
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+I am not doing that much error handling. This could be done in the service to `.catch()` the errors and in the view show the error messages.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Pagination
+
+I started creating pagination for the list of beers, but I need more information from the API. They have the endpoint `https://api.punkapi.com/v2/beers?page=2&per_page=80`, but I would also like to know the total number of beers.
+
+### Loading Animation
+
+I would like to add a loading animation, because it takes some time to get the data from the API.
+
+### The Detailed Page
+
+I would also like to add more content to the `BeerDetailPage.tsx`.
+
+### Tests
+
+The project is already set up to handle tests. It would be great to make tests and especially integration tests or end to end tests. This should be done to check that we're getting a 200 response from the API. We could do this with the Jest test framework. Kent Beck (author of Test Driven Development) once wrote *"I get paid for code that works, not for tests"*.

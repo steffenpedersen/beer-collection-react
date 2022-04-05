@@ -41,7 +41,7 @@ function AddBeer() {
     dispatch(
       setBeers([
         {
-          id: 1,
+          id: Math.random().toString(),
           name: name,
           tagline: tagline,
           description: description,
