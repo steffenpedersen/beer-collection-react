@@ -13,7 +13,7 @@
     - [The Detailed Page](#the-detailed-page)
     - [Tests](#tests)
 
-This project was built with [Create React App](https://github.com/facebook/create-react-app), using the Redux and Redux Toolkit. I have also added React Router, React Spring and Styled Components. The project is using client side rendering, which theoretically might not be the best idea, because it will give the client more JavaScript to handle. Because it is such a small app, I think it is completely alright. I wrote a short post about this [https://www.steffenp.dk/posts/12fd4760-89d2-4a9a-9f6b-547d0dbed1ba](https://www.steffenp.dk/posts/12fd4760-89d2-4a9a-9f6b-547d0dbed1ba).
+This project was built with [Create React App](https://github.com/facebook/create-react-app), using the Redux and Redux Toolkit. I have also added React Router, React Spring and Styled Components. The project is using client side rendering, which theoretically might not be the best idea, because it will give the client more JavaScript to handle. Because it is such a small app, I think it is completely alright. I wrote a short post about this [here](https://www.steffenp.dk/posts/12fd4760-89d2-4a9a-9f6b-547d0dbed1ba).
 
 ## Available Scripts
 
