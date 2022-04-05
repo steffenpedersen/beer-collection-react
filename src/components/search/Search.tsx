@@ -1,6 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getBeersAsync } from "../beers/beersSlice";
+import styled from "styled-components";
+import { Input } from "../../css/helpers";
+import { getBeersAsync } from "../beersList/beersSlice";
+import Button from "../button/Button";
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @media (min-width: ${(props) => props.theme.breakpoints.small}) {
+    flex-direction: row;
+    gap: 50px;
+  }
+`;
 
 function Search() {
   const dispatch = useDispatch();
@@ -12,15 +26,15 @@ function Search() {
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <input
+    <Form onSubmit={submitHandler}>
+      <Input
         type="text"
         value={search}
         placeholder="Search"
         onChange={(event) => setSearch(event.target.value)}
       />
-      <button type="submit">Search</button>
-    </form>
+      <Button text={"Search"} type={"submit"} />
+    </Form>
   );
 }
 

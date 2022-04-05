@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import App from "./App";
 import { GlobalStyle } from "./css/global";
+import "./css/imports.css";
 import { defaultTheme } from "./css/theme";
 import { store } from "./redux/store";
 

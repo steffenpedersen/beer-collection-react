@@ -1,12 +1,12 @@
 import React from "react";
-import Beers from "../../components/beers/Beers";
+import BeersList from "../../components/beersList/BeersList";
 import Search from "../../components/search/Search";
 
 function HomePage() {
   return (
     <div>
       <Search />
-      <Beers />
+      <BeersList />
     </div>
   );
 }

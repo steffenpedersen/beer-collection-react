@@ -20,3 +20,40 @@ export const Wrapper = styled.section`
   
   ${MaxWidth}
 `;
+
+export const Input = styled.input`
+  display: block;
+  font-size: ${(props) => props.theme.sizes.md};
+  border: 0;
+  appearance: none;
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+
+  &:focus {
+    outline: 0;
+    border-bottom: 4px solid ${(props) => props.theme.color.yellow};
+  }
+`;
+
+export const InputFile = styled.input`
+  display: block;
+  text-align: center;
+  background: ${props => props.theme.color.white};;
+  border: 2px solid ${props => props.theme.color.black};
+  border-radius: 6px;
+  padding: 10px 20px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  font-weight: 700;
+
+&::-webkit-file-upload-button {
+  visibility: hidden;
+}
+&:hover {
+  border-color: black;
+}
+
+  
+`;
