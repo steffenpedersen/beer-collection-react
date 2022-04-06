@@ -1,8 +1,8 @@
-import { handleRejected, initialStateBase, StatusSliceBase, handleSuccess, handlePending, genericApiErrorMessage } from './../../redux/helpers';
+import { handleRejected, initialStateBase, StatusSliceBase, handleSuccess, handlePending, genericApiErrorMessage } from './helpers';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Beer } from "../../models/beerModel";
-import { RootState } from "../../redux/store";
-import { beersService } from "../../service/beersService";
+import { Beer } from "../models/beerModel";
+import { RootState } from "./store";
+import { beersService } from "../service/beersService";
 
 export interface BeersState {
     beers: Beer[]

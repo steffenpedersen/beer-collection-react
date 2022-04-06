@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Input } from "../../css/helpers";
-import { getBeersAsync } from "../beersList/beersSlice";
+import { getBeersAsync } from "../../redux/beersSlice";
 import Button from "../button/Button";
 
 const Form = styled.form`

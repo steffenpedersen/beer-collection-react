@@ -6,7 +6,7 @@ import {
   getBeerAsync,
   selectBeer,
   selectBeerStatus,
-} from "../../components/beersList/beersSlice";
+} from "../../redux/beersSlice";
 import { ErrorMessage, IdleMessage } from "../../css/helpers";
 
 const Container = styled.div`

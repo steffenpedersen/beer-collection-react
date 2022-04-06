@@ -7,7 +7,7 @@ import {
   InputFile,
   SuccessMessage,
 } from "../../css/helpers";
-import { setBeers } from "../beersList/beersSlice";
+import { setBeers } from "../../redux/beersSlice";
 import Button from "../button/Button";
 
 const Form = styled.form`

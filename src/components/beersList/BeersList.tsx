@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { ErrorMessage, IdleMessage } from "../../css/helpers";
 import { Beer } from "../../models/beerModel";
 import BeerCard from "../beerCard/BeerCard";
-import { selectBeers, selectBeersStatus } from "./beersSlice";
+import { selectBeers, selectBeersStatus } from "../../redux/beersSlice";
 
 const Grid = styled.ul`
   list-style: none;

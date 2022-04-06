@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { getBeersAsync } from "./components/beersList/beersSlice";
+import { getBeersAsync } from "./redux/beersSlice";
 import Header from "./components/header/Header";
 import { Wrapper } from "./css/helpers";
 import AddBeerPage from "./pages/addBeer/AddBeerPage";
