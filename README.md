@@ -6,6 +6,7 @@
   - [Folder Structure](#folder-structure)
   - [Redux](#redux)
     - [How It Works](#how-it-works)
+    - [Error handling](#error-handling)
   - [Further Development](#further-development)
     - [Tests](#tests)
     - [Pagination](#pagination)
@@ -52,6 +53,10 @@ If we use an example of the list of beers in the `beersSlice` 🍕, then we have
 In the `AddBeer.tsx` I `dispatch` the reducer `setBeers` with an object, which then updates the `state`.
 
 In the `Search.tsx` I `dispatch` the `getBeersAsync` with an argument.
+
+### Error handling
+
+I handle errors through `extraReducers`, that automatically checks the process. I then set the `beersRequest` state or `beerRequest` state with different helpers of the `StatusSliceBase`. In the components, I `selectBeersStatus` and check for the status and show an error message or loading message.
 
 ## Further Development
 
