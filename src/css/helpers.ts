@@ -48,12 +48,38 @@ export const InputFile = styled.input`
   cursor: pointer;
   font-weight: 700;
 
-&::-webkit-file-upload-button {
-  visibility: hidden;
-}
-&:hover {
-  border-color: black;
-}
+  &::-webkit-file-upload-button {
+    visibility: hidden;
+  }
 
-  
+  &:hover {
+    border-color: black;
+  }
+`;
+
+export const ErrorMessage = styled.div`
+  background-color: red;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-align: center;
+  opacity: 0.8;
+`;
+
+export const SuccessMessage = styled.div`
+  background-color: green;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-align: center;
+  opacity: 0.8;
+`;
+
+export const IdleMessage = styled.div`
+  background-color: ${props => props.theme.color.yellow};
+  color: black;
+  padding: 10px 20px;
+  border-radius: 50px;
+  text-align: center;
+  opacity: 0.8;
 `;

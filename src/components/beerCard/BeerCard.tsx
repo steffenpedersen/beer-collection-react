@@ -77,18 +77,17 @@ function BeerCard(props: BeerCardProps) {
 
   return (
     <Route to={`/beer/${props.id}`}>
-      <Card
-        // @ts-ignore
-        onMouseEnter={trigger}
-      >
+      <Card onMouseEnter={trigger}>
         <Heading>{props.name}</Heading>
         <ImageContainer>
           <Image src={props.image_url} alt={props.name} />
         </ImageContainer>
         <Tagline>{props.tagline}</Tagline>
 
-        {/* @ts-ignore */}
-        <Background style={style} />
+        <Background
+          // @ts-ignore
+          style={style}
+        />
       </Card>
     </Route>
   );

@@ -5,7 +5,9 @@ import styled from "styled-components";
 import {
   getBeerAsync,
   selectBeer,
+  selectBeerStatus,
 } from "../../components/beersList/beersSlice";
+import { ErrorMessage, IdleMessage } from "../../css/helpers";
 
 const Container = styled.div`
   display: flex;
@@ -46,6 +48,7 @@ function BeerDetailPage() {
   const dispatch = useDispatch();
   const beer = useSelector(selectBeer);
   const { id } = useParams();
+  const { status, errorMessage } = useSelector(selectBeerStatus);
 
   useEffect(() => {
     dispatch(getBeerAsync(id!));
@@ -53,14 +56,21 @@ function BeerDetailPage() {
 
   return (
     <div>
-      <h1>{beer.name}</h1>
-      <h2 style={{ color: "#00000099" }}>{beer.tagline}</h2>
-      <Container>
-        <Text>{beer.description}</Text>
-        <ImageContainer>
-          <Image src={beer.image_url} alt={beer.name} />
-        </ImageContainer>
-      </Container>
+      {status !== "failed" && (
+        <>
+          <h1>{beer.name}</h1>
+          <h2 style={{ color: "#00000099" }}>{beer.tagline}</h2>
+          <Container>
+            <Text>{beer.description}</Text>
+            <ImageContainer>
+              <Image src={beer.image_url} alt={beer.name} />
+            </ImageContainer>
+          </Container>
+        </>
+      )}
+
+      {status === "loading" && <IdleMessage>Loading...</IdleMessage>}
+      {status === "failed" && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </div>
   );
 }

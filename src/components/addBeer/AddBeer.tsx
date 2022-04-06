@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { Input, InputFile } from "../../css/helpers";
+import {
+  ErrorMessage,
+  Input,
+  InputFile,
+  SuccessMessage,
+} from "../../css/helpers";
 import { setBeers } from "../beersList/beersSlice";
 import Button from "../button/Button";
 
@@ -31,25 +36,46 @@ function AddBeer() {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState<File | null>(null);
 
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
   const createUrlFromFile = (file: File) => {
     return URL.createObjectURL(file);
   };
 
+  // fake a request
+  const request = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, 1000);
+  });
+
   const submitHandler = (event: React.SyntheticEvent) => {
     event.preventDefault();
 
-    dispatch(
-      setBeers([
-        {
-          id: Math.random().toString(),
-          name: name,
-          tagline: tagline,
-          description: description,
-          image_url: createUrlFromFile(image!),
-        },
-      ])
-    );
+    request
+      .then(() => {
+        dispatch(
+          setBeers([
+            {
+              id: Math.random().toString(),
+              name: name,
+              tagline: tagline,
+              description: description,
+              image_url: createUrlFromFile(image!),
+            },
+          ])
+        );
+
+        setSuccessMessage("Beer added successfully!");
+        setErrorMessage("");
+      })
+      .catch(() => {
+        setSuccessMessage("");
+        setErrorMessage("Something went wrong!");
+      });
   };
+
   return (
     <Form onSubmit={submitHandler}>
       <Input
@@ -87,6 +113,9 @@ function AddBeer() {
       </ImageSelect>
 
       <Button type="submit" text="Add beer" />
+
+      {!!errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {!!successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
     </Form>
   );
 }

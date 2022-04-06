@@ -18,13 +18,14 @@ function Button(props: Props) {
 
   return (
     <ButtonContainer
-      // @ts-ignore
       onMouseEnter={trigger}
       onClick={props.onClick}
       type={props.type}
     >
-      {/* @ts-ignore */}
-      <Background style={style} />
+      <Background
+        // @ts-ignore
+        style={style}
+      />
       {props.text}
     </ButtonContainer>
   );

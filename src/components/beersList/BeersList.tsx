@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { ErrorMessage, IdleMessage } from "../../css/helpers";
 import { Beer } from "../../models/beerModel";
 import BeerCard from "../beerCard/BeerCard";
-import { selectBeers } from "./beersSlice";
+import { selectBeers, selectBeersStatus } from "./beersSlice";
 
 const Grid = styled.ul`
   list-style: none;
@@ -21,19 +22,23 @@ const Grid = styled.ul`
 
 function BeersList() {
   const beers = useSelector(selectBeers);
+  const { status, errorMessage } = useSelector(selectBeersStatus);
 
   return (
     <Grid>
-      {beers.map((beer: Beer) => (
-        <li>
-          <BeerCard
-            id={beer.id}
-            name={beer.name}
-            image_url={beer.image_url}
-            tagline={beer.tagline}
-          />{" "}
-        </li>
-      ))}
+      {status !== "failed" &&
+        beers.map((beer: Beer) => (
+          <li key={beer.id}>
+            <BeerCard
+              id={beer.id}
+              name={beer.name}
+              image_url={beer.image_url}
+              tagline={beer.tagline}
+            />{" "}
+          </li>
+        ))}
+      {status === "loading" && <IdleMessage>Loading...</IdleMessage>}
+      {status === "failed" && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </Grid>
   );
 }

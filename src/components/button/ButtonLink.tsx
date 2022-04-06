@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import useBoop from "../../hooks/useBoop";
 import { Background, Container } from "./Shared";
@@ -8,7 +9,7 @@ interface Props {
   text: string;
 }
 
-const ButtonContainer = styled.a`
+const ButtonContainer = styled(Link)`
   ${Container}
 `;
 
@@ -16,13 +17,11 @@ function ButtonLink(props: Props) {
   const [style, trigger] = useBoop({ scale: 1.02 });
 
   return (
-    <ButtonContainer
-      // @ts-ignore
-      onMouseEnter={trigger}
-      href={props.link}
-    >
-      {/* @ts-ignore */}
-      <Background style={style} />
+    <ButtonContainer onMouseEnter={trigger} to={props.link}>
+      <Background
+        // @ts-ignore
+        style={style}
+      />
       {props.text}
     </ButtonContainer>
   );

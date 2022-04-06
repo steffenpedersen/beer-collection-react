@@ -7,11 +7,11 @@
   - [Redux](#redux)
     - [How It Works](#how-it-works)
   - [Further Development](#further-development)
-    - [Error Handling](#error-handling)
+    - [Tests](#tests)
     - [Pagination](#pagination)
     - [Loading Animation](#loading-animation)
     - [The Detailed Page](#the-detailed-page)
-    - [Tests](#tests)
+    - [The search bar](#the-search-bar)
 
 This project was built with [Create React App](https://github.com/facebook/create-react-app), using the Redux and Redux Toolkit. I have also added React Router, React Spring and Styled Components. The project is using client side rendering, which theoretically might not be the best idea, because it will give the client more JavaScript to handle. Because it is such a small app, I think it is completely alright. I wrote a short post about this [here](https://www.steffenp.dk/posts/12fd4760-89d2-4a9a-9f6b-547d0dbed1ba).
 
@@ -31,10 +31,10 @@ Here is a list with a description of the content of the folders. I have modified
 
 - **public**: static content
 - **src**: main content
-  - **components**: components with `.tsx`, `test.tsx` and `Slice.ts`
+  - **components**: components with `.tsx` and `test.tsx`
   - **css**: theme, global css and helpers
   - **hooks**: custom hooks
-  - **models**: global interfaces
+  - **models**: global types
   - **pages**: the main pages
   - **redux**: initialization of the state
   - **service**: fetch the data
@@ -57,9 +57,9 @@ In the `Search.tsx` I `dispatch` the `getBeersAsync` with an argument.
 
 I have written down a few thoughts on possible further development.
 
-### Error Handling
+### Tests
 
-I am not doing that much error handling. This could be done in the service to `.catch()` the errors and in the view show the error messages.
+The project is already set up to handle tests. It would be great to make tests and especially integration tests or end to end tests. This should be done to check that we're getting a 200 response from the API. We could do this with the Jest test framework. Kent Beck (author of Test Driven Development) once wrote *"I get paid for code that works, not for tests"*. This is, of course, a bold statement with a fine line.
 
 ### Pagination
 
@@ -67,12 +67,12 @@ I started creating pagination for the list of beers, but I need more information
 
 ### Loading Animation
 
-I would like to add a loading animation, because it takes some time to get the data from the API.
+I would like to add a smoother loading animation, because it takes some time to get the data from the API.
 
 ### The Detailed Page
 
 I would also like to add more content to the `BeerDetailPage.tsx`.
 
-### Tests
+### The search bar
 
-The project is already set up to handle tests. It would be great to make tests and especially integration tests or end to end tests. This should be done to check that we're getting a 200 response from the API. We could do this with the Jest test framework. Kent Beck (author of Test Driven Development) once wrote *"I get paid for code that works, not for tests"*.
+The search could be done with `onInput` instead of `onSubmit`.

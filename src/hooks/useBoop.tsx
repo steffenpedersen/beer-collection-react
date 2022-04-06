@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useSpring } from "react-spring";
+import { SpringValue, useSpring } from "react-spring";
+
+type BoopType = [
+  {
+    display: SpringValue<string>;
+    backfaceVisibility: SpringValue<string>;
+    transform: SpringValue<string>;
+  },
+  () => void
+];
 
 // * This is a custom hook with inspiration from
 // * https://www.joshwcomeau.com/react/boop/
@@ -14,7 +23,7 @@ function useBoop({
     tension: 300,
     friction: 10,
   },
-}) {
+}): BoopType {
   const [isBooped, setIsBooped] = useState(false);
   const style = useSpring({
     display: "inline-block",

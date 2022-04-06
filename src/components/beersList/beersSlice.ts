@@ -1,3 +1,4 @@
+import { handleRejected, initialStateBase, StatusSliceBase, handleSuccess, handlePending, genericApiErrorMessage } from './../../redux/helpers';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Beer } from "../../models/beerModel";
 import { RootState } from "../../redux/store";
@@ -5,12 +6,16 @@ import { beersService } from "../../service/beersService";
 
 export interface BeersState {
     beers: Beer[]
+    beersRequest: StatusSliceBase
     beer: Beer
+    beerRequest: StatusSliceBase
 }
 
 const initialState: BeersState = {
     beers: [],
-    beer: {} as Beer
+    beersRequest: initialStateBase,
+    beer: {} as Beer,
+    beerRequest: initialStateBase
 };
 
 export const getBeersAsync = createAsyncThunk(
@@ -39,17 +44,27 @@ export const beersSlice = createSlice({
         }
     },
     extraReducers: {
+        [getBeersAsync.pending.type]: (state) => {
+            handlePending(state.beersRequest);
+        },
         [getBeersAsync.fulfilled.type]: (state, action) => {
             state.beers = action.payload;
+            handleSuccess(state.beersRequest);
         },
         [getBeersAsync.rejected.type]: (state, action) => {
             console.error(action.error);
+            handleRejected(state.beersRequest, genericApiErrorMessage);
+        },
+        [getBeerAsync.pending.type]: (state) => {
+            handlePending(state.beerRequest);
         },
         [getBeerAsync.fulfilled.type]: (state, action) => {
             state.beer = action.payload;
+            handleSuccess(state.beerRequest);
         },
         [getBeerAsync.rejected.type]: (state, action) => {
             console.error(action.error);
+            handleRejected(state.beerRequest, genericApiErrorMessage);
         }
     }
 });
@@ -57,7 +72,8 @@ export const beersSlice = createSlice({
 export const { setBeers } = beersSlice.actions;
 
 export const selectBeers = (state: RootState) => state.beers.beers;
-
+export const selectBeersStatus = (state: RootState) => state.beers.beersRequest;
 export const selectBeer = (state: RootState) => state.beers.beer;
+export const selectBeerStatus = (state: RootState) => state.beers.beerRequest;
 
 export default beersSlice.reducer;
