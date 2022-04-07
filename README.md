@@ -3,6 +3,7 @@
 - [Beer Collection 🍻](#beer-collection-)
   - [Available Scripts](#available-scripts)
     - [`npm start`](#npm-start)
+    - [`npm test`](#npm-test)
   - [Folder Structure](#folder-structure)
   - [Redux](#redux)
     - [How It Works](#how-it-works)
@@ -26,19 +27,23 @@ Runs the app in the development mode.<br />
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+### `npm test`
+
+Launches the test runner in the interactive watch mode.
+
 ## Folder Structure
 
 Here is a list with a description of the content of the folders. I have modified the structure from Create React App to enhance separation of concerns.
 
 - **public**: static content
 - **src**: main content
-  - **components**: components with `.tsx` and `test.tsx`
+  - **components**: components with `.tsx`
   - **css**: theme, global css and helpers
   - **hooks**: custom hooks
   - **models**: global types
   - **pages**: the main pages
   - **redux**: initialization of the state
-  - **service**: fetch the data
+  - **service**: fetch the data and tests
 
 ## Redux
 
@@ -64,7 +69,7 @@ I have written down a few thoughts on possible further development.
 
 ### Tests
 
-The project is already set up to handle tests. It would be great to make tests and especially integration tests or end to end tests. This should be done to check that we're getting a 200 response from the API. We could do this with the Jest test framework. Kent Beck (author of Test Driven Development) once wrote *"I get paid for code that works, not for tests"*. This is, of course, a bold statement with a fine line.
+I have added integration tests for the service, but I have not made any unit tests. I am testing `should get beers`, `should get beers by name` and `should get beer`.
 
 ### Pagination
 
